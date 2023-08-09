@@ -28,7 +28,7 @@ pipeline {
                 sh ''' mvn sonar:sonar -Dsonar.host.url=http://44.202.37.0:9000/ -Dsonar.login=squ_c9d95c6b367ff554893cb29ed4a4f99e1b9403f8'''
             }
         }
-        stage('static code analysis Sonarqube') {
+        stage('quality gate state Sonarqube') {
 
             steps {
                 waitForQualityGate abortPipeline: true
