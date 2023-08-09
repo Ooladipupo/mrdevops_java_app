@@ -21,5 +21,11 @@ pipeline {
                 sh 'mvn verify -DskipUnitTests'
             }
         }
+        stage('static code analysis Sonarqube') {
+
+            steps {
+                sh 'mvn clean package sonar:sonar'
+            }
+        }
     }
 }
