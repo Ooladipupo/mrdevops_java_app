@@ -25,14 +25,9 @@ pipeline {
 
             steps {
                 sh 'mvn clean package'
-                sh ''' mvn sonar:sonar -Dsonar.host.url=http://44.202.37.0:9000/ -Dsonar.login=squ_c9d95c6b367ff554893cb29ed4a4f99e1b9403f8'''
-            }
-        }
-            stage('quality gate state Sonarqube') {
-
-            steps {
-                withSonarQubeEnv('sonarqube-api')
-                    waitForQualityGate abortPipeline: true
+                sh ''' mvn sonar:sonar -Dsonar.host.url=http://44.202.37.0:9000/ -Dsonar.login=squ_c9d95c6b367ff554893cb29ed4a4f99e1b9403f8 -Dsonar.projectName=minikube-sample 
+                -Dsonar.java.binaries=. \
+                -Dsonar.projectkey=minikube-sample'''
             }
         }
     }
