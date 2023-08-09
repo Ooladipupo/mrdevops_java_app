@@ -31,7 +31,10 @@ pipeline {
             stage('static code analysis Sonarqube') {
 
             steps {
-                sh 'waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-api'
+                script{
+                    def sonarQubeCredentials = 'sonarqube-api'
+                    sh 'waitForQualityGate abortPipeline: false, credentialsId: 'sonarQubeCredentials'
+                }
             }
         }
     }
