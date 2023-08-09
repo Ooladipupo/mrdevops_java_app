@@ -32,8 +32,7 @@ pipeline {
 
             steps {
                 script{
-                    def sonarQubeCredentials = 'sonarqube-api'
-                    sh 'waitForQualityGate abortPipeline: false, credentialsId: 'sonarQubeCredentials'
+                    sh 'waitForQualityGate abortPipeline: false
                 }
             }
         }
