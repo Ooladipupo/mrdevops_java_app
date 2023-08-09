@@ -31,7 +31,7 @@ pipeline {
         stage('static code analysis Sonarqube') {
 
             steps {
-                sh '''waitForQualityGate abortPipeline: true
+                waitForQualityGate abortPipeline: true
             }
         }
     }
