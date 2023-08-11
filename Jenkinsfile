@@ -28,7 +28,7 @@ pipeline {
                 sh ''' mvn sonar:sonar -Dsonar.host.url=http://44.201.116.224:9000/ -Dsonar.login=squ_c9d95c6b367ff554893cb29ed4a4f99e1b9403f8'''
             }
         }
-        // stage('quality gate') {
+        stage('quality gate') {
             
             steps {
                withSonarQubeEnv('sonarqube-api') {
