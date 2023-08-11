@@ -46,7 +46,7 @@ pipeline {
         stage('Docker Image Build') {
 
             steps {
-               sh """ docker build -t $(DOCKERHUB) .
+               sh """ docker build -t $DOCKERHUB .
                docker tag $(DOCKERHUB) $(DOCKERHUB);V1.2
                """
             }
