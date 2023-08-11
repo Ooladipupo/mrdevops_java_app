@@ -35,6 +35,12 @@ pipeline {
                 waitForQualityGate abortPipeline: false }
             }
         }
+         stage('maven vuild') {
+
+            steps {
+                sh 'mvn clean install'
+            }
+        }
     }
 }
 
