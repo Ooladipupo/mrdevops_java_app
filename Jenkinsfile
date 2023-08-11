@@ -67,12 +67,12 @@ pipeline {
                     credentialsId: 'DockerHub', 
                     passwordVariable: 'PASS', 
                     usernameVariable: 'USER'
-                )])}}
-                   script{ docker login -u "$USER" -p "$PASS"
+                )])
+                script{ docker login -u "$USER" -p "$PASS"
                             sh "docker push $DOCKERHUB:V1.2"}
             }
         }
-    
-
+    }
+}
 
 
