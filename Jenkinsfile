@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    environment{
-        SONARSERVER = 'sonarqube-api'
-        SONARSCANNER = 'sonar-scanner'
-    }
 
     stages {
 
@@ -25,21 +21,18 @@ pipeline {
                 sh 'mvn verify -DskipUnitTests'
             }
         }
-        stage('build && SonarQube analysis') {
+        stage('static code analysis Sonarqube') {
+
             steps {
-                withSonarQubeEnv('sonarqube-api')
+                sh 'mvn clean package'
+                sh ''' mvn sonar:sonar -Dsonar.host.url=http://44.202.37.0:9000/ -Dsonar.login=squ_c9d95c6b367ff554893cb29ed4a4f99e1b9403f8'''
             }
         }
-        stage('Quality gate state Sonarqube') {
-            environment {
-                scannerHome = tool $(SONARSCANNER)
-            }
+        stage('quality gate') {
+            
             steps {
-                withSonarQubeEnv$(SONARSERVER) {
-                    sh ''' $(scannerHome)/bin/sonar-scanner -Dsonar.host.url=http://44.201.116.224:9000/ -Dsonar.login=squ_c9d95c6b367ff554893cb29ed4a4f99e1b9403f8 -Dsonar.projectName=minikube-sample 
-                    -Dsonar.java.binaries=. \
-                    -Dsonar.projectkey=minikube-sample '''
-                }
+                withSonarQubeEnv('sonarqube-api') {
+                waitForQualityGate abortPipeline: false, 'sonarqube-api'
             }
         }
     }
