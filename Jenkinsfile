@@ -68,11 +68,9 @@ pipeline {
                     passwordVariable: 'PASS', 
                     usernameVariable: 'USER'
                 )]) {
-                     docker login -u "$USER" -p "$PASS"
-                    }
-                sh """ 
-                docker push $DOCKERHUB:V1.2
-               """
+                    docker login -u "$USER" -p "$PASS"
+                }
+                sh "docker push $DOCKERHUB:V1.2"
             }
         }
     }
