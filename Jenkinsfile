@@ -72,7 +72,7 @@ pipeline {
                             sh "docker push $DOCKERHUB:V1.2"}
             }
         }
-    }
+    
 
 
 
