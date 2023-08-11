@@ -47,7 +47,7 @@ pipeline {
 
             steps {
                sh """ docker build -t $DOCKERHUB .
-               docker tag $(DOCKERHUB) $(DOCKERHUB);V1.2
+               docker tag $DOCKERHUB $DOCKERHUB:V1.2
                """
             }
         }
