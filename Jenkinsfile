@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment{
+        DOCKERHUB = 'ola22/testing'
+    }
     stages {
 
         stage('GIT Checkout') {
@@ -35,10 +37,18 @@ pipeline {
                 waitForQualityGate abortPipeline: false }
             }
         }
-         stage('maven vuild') {
+        stage('maven Build') {
 
             steps {
                 sh 'mvn clean install'
+            }
+        }
+        stage('Docker Image Build') {
+
+            steps {
+               sh """ docker build -t $(DOCKERHUB) .
+               docker tag $(DOCKERHUB) $(DOCKERHUB);V1.2
+               """
             }
         }
     }
