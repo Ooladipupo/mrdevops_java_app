@@ -30,11 +30,11 @@ pipeline {
         }
         // stage('quality gate') {
             
-        //     steps {
-        //        withSonarQubeEnv('sonarqube-api') {
-        //         waitForQualityGate abortPipeline: true }
-        //     }
-        // }
+            steps {
+               withSonarQubeEnv('sonarqube-api') {
+                waitForQualityGate abortPipeline: true }
+            }
+        }
     }
 }
 }
