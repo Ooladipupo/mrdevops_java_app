@@ -47,7 +47,7 @@ pipeline {
 
             steps {
                sh """ docker build -t $DOCKERHUB .
-               docker tag $DOCKERHUB $DOCKERHUB:V1.2
+               docker tag $DOCKERHUB $DOCKERHUB:Ola-V1.2
                """
             }
         }
@@ -66,7 +66,7 @@ pipeline {
                 script{
                     withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         sh "echo $PASS | docker login -u $USER --password-stdin"
-                        sh "docker push $DOCKERHUB:V1.2"
+                        sh "docker push $DOCKERHUB:Ola-V1.2"
                     }
                 }
             }
