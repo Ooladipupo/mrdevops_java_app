@@ -55,7 +55,7 @@ pipeline {
 
             steps {
                 sh """
-                trivy image docker tag $DOCKERHUB $DOCKERHUB:V1.2 > scan.txt
+                trivy image $DOCKERHUB:V1.2 > scan.txt
                 cat scan.txt
                 """
             }
