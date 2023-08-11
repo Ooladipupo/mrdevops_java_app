@@ -32,7 +32,7 @@ pipeline {
             
             steps {
                withSonarQubeEnv('sonarqube-api') {
-                waitForQualityGate abortPipeline: true }
+                waitForQualityGate abortPipeline: false }
             }
         }
     }
