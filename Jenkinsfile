@@ -32,7 +32,7 @@ pipeline {
         }
         stage('Quality gate state Sonarqube') {
             environment {
-                scannerHome = tool ("$(SONARSCANNER)")
+                scannerHome = tool $(SONARSCANNER)
             }
             steps {
                 withSonarQubeEnv("$(SONARSERVER)") {
