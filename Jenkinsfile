@@ -63,13 +63,12 @@ pipeline {
         stage('Docker Image Push to DockerHub') {
 
             steps {
-                withCredentials([usernamePassword(
-                    credentialsId: 'DockerHub', 
-                    passwordVariable: 'PASS', 
-                    usernameVariable: 'USER'
-                )])
-                script{ echo $PASS | docker login -u "$USER" --password-stdin"
-                            sh "docker push $DOCKERHUB:V1.2"}
+                script{
+                    withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                        sh "echo $PASS | docker login -u $USER --password-stdin"
+                        sh "docker push $DOCKERHUB:V1.2"
+                    }
+                }
             }
         }
     }
