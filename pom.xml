@@ -20,7 +20,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
          <sonar.coverage.jacoco.xmlReportPaths>
-             ../app-project-name/target/jacoco-report/jacoco.xml
+                  ../app-project-name/target/jacoco-report/jacoco.xml
           </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
