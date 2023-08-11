@@ -51,6 +51,15 @@ pipeline {
                """
             }
         }
+        stage('Trivy Image Scan') {
+
+            steps {
+                sh """
+                trivy image docker tag $DOCKERHUB $DOCKERHUB:V1.2 > scan.txt
+                cat scan.txt
+                """
+            }
+        }
     }
 }
 
