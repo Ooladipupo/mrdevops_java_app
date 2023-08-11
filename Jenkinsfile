@@ -51,15 +51,15 @@ pipeline {
                """
             }
         }
-        stage('Trivy Image Scan') {
+        // stage('Trivy Image Scan') {
 
-            steps {
-                sh """
-                trivy image $DOCKERHUB:V1.2 > scan.txt
-                cat scan.txt
-                """
-            }
-        }
+        //     steps {
+        //         sh """
+        //         trivy image $DOCKERHUB:V1.2 > scan.txt
+        //         cat scan.txt
+        //         """
+        //     }
+        // }
         stage('Docker Image Push to DockerHub') {
 
             steps {
@@ -67,7 +67,10 @@ pipeline {
                     credentialsId: 'DockerHub', 
                     passwordVariable: 'PASS', 
                     usernameVariable: 'USER')])
-                sh """ docker login -u "$USER" -p "$PASS"
+
+                docker login -u "$USER" -p "$PASS"
+                
+                sh """ 
                 docker push $DOCKERHUB:V1.2
                """
             }
