@@ -60,6 +60,19 @@ pipeline {
                 """
             }
         }
+        stage('Docker Image Push to DockerHub') {
+
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'DockerHub', 
+                    passwordVariable: 'PASS', 
+                    usernameVariable: 'USER')])
+                sh """ docker login -u "$USER" -p "$PASS"
+                docker push $DOCKERHUB:V1.2
+               """
+            }
+        }
     }
 }
+
 
