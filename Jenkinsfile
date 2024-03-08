@@ -66,7 +66,7 @@ pipeline {
                 script{
                     withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         sh "echo $PASS | docker login -u $USER --password-stdin"
-                        sh "docker push $DOCKERHUB:Ola-V1.2"
+                        sh "docker push $DOCKERHUB:jma-V1.2"
                     }
                 }
             }
